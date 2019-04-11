@@ -1,2 +1,32 @@
-# proyectofinalnow
-Adelanto del proyecto
+grammar finalcompi;
+
+start
+:
+			'*'LIBRERIAS INICIO NOMBRE_PROGRAMA CUERPO FINAL;
+LIBRERIAS: 	'CAPINFO' |'IMPINFO'| 'COGELAR';
+INICIO: 'EMPEZAR';
+CUERPO: VARIABLES CAPINFO? IMPINFO? CONDICION?;
+VARIABLES: (LETRA|'_')(LETRA|NUMERO|'_')* ;
+NUMERO: '0'..'9';
+CAPINFO: LETRA VARIABLES;
+IMPINFO: 'mostrar' '*' LETRA '*';
+CONDICION: 'if' HACER INSTRUCCIONES ('else'INSTRUCCIONES)?;
+
+HACER: IZPARE VARIABLES +CONDICIONANTE+ VARIABLES DEPARE;
+LETRA_NUM:ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF ALF| NUM NUM; 
+INSTRUCCIONES: LLAVEabrir IMprimir? IZPARE? (LETRA_NUM DEPARE? |(LETRA_NUM  ADoRES)) LLAVEcerrar; 
+ALF: [a-zA-Z]; 
+NUM: [0-9];
+IZPARE: '('|'("';
+DEPARE: ');'|'");'|')'|';';
+CONDICIONANTE: '=='|'!='|'<'|'>'|'<='|'>=';
+LLAVEabrir: '{';
+LLAVEcerrar: '}';
+ADoRES: '++'|'--';
+IMprimir: 'System.out.println';
+FINAL: 'FIN';
+NOMBRE_PROGRAMA: ;
+LETRA: 'A'..'Z'|'a'..'z';
+WS
+:
+	[ \t\r\n]+ -> skip
